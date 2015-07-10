@@ -1,0 +1,15 @@
+app:
+  build: ./service-app/
+  links:
+    - dbsetup
+    - db
+dbsetup:
+  build: ./service-dbsetup/
+  environment:
+    MYSQL_REMOTE_HOST: db
+  links:
+    - db
+db:
+  image: mysql
+  environment:
+    MYSQL_ALLOW_EMPTY_PASSWORD: true
